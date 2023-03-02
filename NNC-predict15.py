@@ -13,7 +13,7 @@ X = data.drop(['blue_win', 'matchId'], axis=1).values
 Y = data['blue_win'].values
 
 # Apply PCA to reduce the number of features to 30
-pca = PCA(n_components=17)
+pca = PCA(n_components=16)
 X = pca.fit_transform(X)
 
 # Scale the input variables
@@ -32,7 +32,7 @@ print(X_test.shape)
 
 
 # Define the neural network model
-model = MLPClassifier(hidden_layer_sizes=(32, 16, 8), activation='relu', solver='adam', max_iter=500)
+model = MLPClassifier(hidden_layer_sizes=(16, 8), activation='relu', solver='adam', max_iter=500)
 
 # Train the model
 model.fit(X_train, Y_train)
