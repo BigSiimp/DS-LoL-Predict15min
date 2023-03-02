@@ -12,19 +12,21 @@ data = pd.read_csv('MatchTimelinesFirst15.csv')
 X = data.drop(['blue_win', 'matchId'], axis=1).values
 Y = data['blue_win'].values
 
-# Apply PCA to reduce the number of features to 30
+# Apply PCA to reduce features
 pca = PCA(n_components=16)
 X = pca.fit_transform(X)
 
-# Scale the input variables
+# Scale variables
 scaler = StandardScaler()
 X = scaler.fit_transform(X)
 
-# Split the data into training and testing sets
+# Split the data 
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=69)
 X_test, X_val, Y_test, Y_val = train_test_split(X_test, Y_test, test_size=0.666, random_state=69)
 
 # Shape of the used data
+print(data.describe())
+
 print(data.shape)
 print(X_train.shape)
 print(X_val.shape)
