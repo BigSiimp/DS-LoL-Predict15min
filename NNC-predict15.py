@@ -21,8 +21,8 @@ scaler = StandardScaler()
 X = scaler.fit_transform(X)
 
 # Split the data into training and testing sets
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=0)
-X_test, X_val, Y_test, Y_val = train_test_split(X_test, Y_test, test_size=0.33, random_state=0)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=69)
+X_test, X_val, Y_test, Y_val = train_test_split(X_test, Y_test, test_size=0.666, random_state=69)
 
 # Shape of the used data
 print(data.shape)
@@ -32,14 +32,16 @@ print(X_test.shape)
 
 
 # Define the neural network model
-model = MLPClassifier(hidden_layer_sizes=(64, 32), activation='relu', solver='adam', max_iter=1000)
+model = MLPClassifier(hidden_layer_sizes=(32, 16, 8), activation='relu', solver='adam', max_iter=500)
 
 # Train the model
 model.fit(X_train, Y_train)
 
-# Evaluate the model on the testing data
+# Evaluate the model 
 accuracy = model.score(X_test, Y_test)
 print('Accuracy:', accuracy)
+accuracy = model.score(X_val, Y_val)
+print('Validation accuracy:', accuracy)
 
 # Choose a random game ID from the dataset
 random_game_id = random.choice(data['matchId'])
